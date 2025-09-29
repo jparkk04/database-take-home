@@ -75,79 +75,113 @@ Length of the lines
 Probability of going to the other graph for larger numbers
 
 Testing Results:
-5 lines (only 0 to 39 nodes):
-Initial:   80.0% (160/200)
-Optimized: 100.0% (200/200)
+initial testing (5 lines): length 8
+SUCCESS RATE:
+  Optimized: 100.0% (200/200)
+  ✅ Improvement: 20.5%
 
 PATH LENGTHS (successful queries only):
-Initial:   508.5 (160/200 queries)
-Optimized: 146.75 (200/200 queries)
+  Optimized: 143.25 (200/200 queries)
+  ✅ Improvement: 75.1%
+
+COMBINED SCORE (success rate × path efficiency):
+  Score: 261.22
 
 Note, including many nodes will be difficult since nodes start at random positions and it will be optimal to make those point to 0 for super large numbers.
 
-Experiment with different path lengths with 5 lines:
-length 4
+Results after making large numbers point to 0 (length 8):
 SUCCESS RATE:
   Initial:   79.5% (159/200)
   Optimized: 100.0% (200/200)
   ✅ Improvement: 20.5%
 
 PATH LENGTHS (successful queries only):
-  Initial:   518.0 (159/200 queries)
-  Optimized: 198.75 (200/200 queries)
-  ✅ Improvement: 61.6%
+  Initial:   538.0 (159/200 queries)
+  Optimized: 19.0 (200/200 queries)
+  ✅ Improvement: 96.5%
 
 COMBINED SCORE (success rate × path efficiency):
-  Score: 228.27
+  Score: 437.81
 
-length 5
+
+length 4
 SUCCESS RATE:
   Initial:   80.5% (161/200)
   Optimized: 100.0% (200/200)
   ✅ Improvement: 19.5%
 
 PATH LENGTHS (successful queries only):
-  Initial:   576 (161/200 queries)
-  Optimized: 196.75 (200/200 queries)
-  ✅ Improvement: 65.8%
+  Initial:   595.0 (161/200 queries)
+  Optimized: 15.0 (200/200 queries)
+  ✅ Improvement: 97.5%
 
 COMBINED SCORE (success rate × path efficiency):
-  Score: 236.80
+  Score: 470.54
 
-length 6
+length 5
 SUCCESS RATE:
-  Initial:   79.0% (158/200)
+  Initial:   79.5% (159/200)
   Optimized: 100.0% (200/200)
-  ✅ Improvement: 21.0%
+  ✅ Improvement: 20.5%
 
 PATH LENGTHS (successful queries only):
-  Initial:   518.25 (158/200 queries)
-  Optimized: 185.25 (200/200 queries)
-  ✅ Improvement: 64.3%
+  Initial:   612.5 (159/200 queries)
+  Optimized: 15.5 (200/200 queries)
+  ✅ Improvement: 97.5%
 
 COMBINED SCORE (success rate × path efficiency):
-  Score: 233.44
-  Higher is better, rewards both success and shorter paths
+  Score: 470.17
 
-length 7
+
+length 6
 SUCCESS RATE:
   Initial:   80.0% (160/200)
   Optimized: 100.0% (200/200)
   ✅ Improvement: 20.0%
 
 PATH LENGTHS (successful queries only):
-  Initial:   541.5 (160/200 queries)
-  Optimized: 128.0 (200/200 queries)
-  ✅ Improvement: 76.4%
+  Initial:   610.5 (160/200 queries)
+  Optimized: 16.0 (200/200 queries)
+  ✅ Improvement: 97.4%
 
 COMBINED SCORE (success rate × path efficiency):
-  Score: 265.45
+  Score: 466.76
+
+length 7
+SUCCESS RATE:
+  Initial:   79.5% (159/200)
+  Optimized: 100.0% (200/200)
+  ✅ Improvement: 20.5%
+
+PATH LENGTHS (successful queries only):
+  Initial:   555 (159/200 queries)
+  Optimized: 18.0 (200/200 queries)
+  ✅ Improvement: 96.8%
+
+COMBINED SCORE (success rate × path efficiency):
+  Score: 446.05
 
 length 8 (above)
 
 length 9
 
-length 10
+SUCCESS RATE:
+  Optimized: 100.0% (200/200)
+  ✅ Improvement: 20.5%
+
+PATH LENGTHS (successful queries only):
+  Optimized: 21.75 (200/200 queries)
+  ✅ Improvement: 96.1%
+
+COMBINED SCORE (success rate × path efficiency):
+  Score: 427.26
+
+
+
+3 Lines
+length 5
+
+6 Lines
 
 ### Implementation Details
 

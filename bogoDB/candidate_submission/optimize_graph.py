@@ -74,20 +74,35 @@ def create_five_line_graph(length):
     optimized_graph = {}
     for i in range(500):
         optimized_graph[str(i)] = {}
-    for i in range(1 or (500 // (length * 5)) - 1):
-        optimized_graph[str(i * length * 5 + 0)][str(i * length * 5 + 1)] = 3
-        optimized_graph[str(i * length * 5 + 0)][str(i * length * 5 + 2)] = 1
-        optimized_graph[str(i * length  * 5 + 0)][str(i * length  * 5 + 3)] = 1
-        optimized_graph[str(i * length  * 5 + 1)][str(i * length  * 5 + 4)] = 1
-        optimized_graph[str(i * length  * 5 + 1)][str(i * length  * 5 + 5)] = 1
-        optimized_graph[str(i * length * 5 + 1)][str(i * length * 5 + 6)] = 1
-        for j in range(7, length * 5):
-            optimized_graph[str(i * length * 5 + j)][str(i * length * 5 + j + 5)] = 1
-        optimized_graph[str(i * length * 5 + 37)][str(i * length * 5 + 1)] = 1 # 1 goes to lines 0,1,4 mod 5
-        optimized_graph[str(i * length * 5 + 38)][str(i * length * 5 + 1)] = 1
-        optimized_graph[str(i * length * 5 + 39)][str(i * length * 5 + 3)] = 1
-        optimized_graph[str(i * length * 5 + 35)][str(i * length * 5 + 2)] = 1
-        optimized_graph[str(i * length * 5 + 36)][str(i * length * 5 + 1)] = 1
+    optimized_graph[str(0)][str(1)] = 3
+    optimized_graph[str(0)][str(2)] = 1
+    optimized_graph[str(0)][str(3)] = 1
+    optimized_graph[str(1)][str(4)] = 1
+    optimized_graph[str(1)][str(5)] = 1
+    optimized_graph[str(1)][str(6)] = 1
+    for j in range(4, (length - 1) * 5):
+        optimized_graph[str(j)][str(j + 5)] = 1
+    optimized_graph[str((length - 1) * 5 + 2)][str(1)] = 1 # 1 goes to lines 0,1,4 mod 5
+    optimized_graph[str((length - 1) * 5 + 3)][str(1)] = 1
+    optimized_graph[str((length - 1) * 5 + 4)][str(3)] = 1
+    optimized_graph[str((length - 1) * 5 + 0)][str(2)] = 1
+    optimized_graph[str((length - 1) * 5 + 1)][str(1)] = 1
+    for i in range(length * 5, 500):
+        optimized_graph[str(i)][str(0)] = 1
+    return optimized_graph
+
+def create_three_line_graph(length):
+    optimized_graph = {}
+    optimized_graph["0"]["1"] = 1
+    optimized_graph["0"]["2"] = 1
+    optimized_graph["0"]["3"] = 1
+    for i in range(3, (length - 1) * 3):
+        optimized_graph[str(i)][str(i + 3)] = 1
+    optimized_graph[str((length - 1) * 3 + 0)][str(1)] = 1
+    optimized_graph[str((length - 1) * 3 + 1)][str(2)] = 1
+    optimized_graph[str((length - 1) * 3 + 2)][str(3)] = 1
+    for i in range(length * 3, 500):
+        optimized_graph[str(i)][str(0)] = 1
     return optimized_graph
 
 def optimize_graph(
@@ -140,8 +155,9 @@ def optimize_graph(
     # This is just a basic example - you should implement a more
     # sophisticated strategy based on query analysis!
     # ---------------------------------------------------------------
-    length = 7
+    length = 5
     optimized_graph = create_five_line_graph(length)
+    optimized_graph = create_three_line_graph(length)
     print(f"Created graph with {length} lines")
     
 
