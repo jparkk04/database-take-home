@@ -72,7 +72,7 @@ There are 5 lines with length of around 8 (around 40 nodes). The end of each lin
 What needs to be optimized:
 Number of lines
 Length of the lines
-Probability of going to the other graph for larger numbers
+Probability of going to the other graph for larger numbers (not used)
 
 Testing Results:
 initial testing (5 lines): length 8
@@ -90,6 +90,7 @@ COMBINED SCORE (success rate × path efficiency):
 Note, including many nodes will be difficult since nodes start at random positions and it will be optimal to make those point to 0 for super large numbers.
 
 Results after making large numbers point to 0 (length 8):
+These results are from a code that had a bug, but fixing the bug gave lower results
 SUCCESS RATE:
   Initial:   79.5% (159/200)
   Optimized: 100.0% (200/200)
@@ -180,27 +181,156 @@ COMBINED SCORE (success rate × path efficiency):
 
 3 Lines
 length 5
+SUCCESS RATE:
+  Initial:   80.5% (161/200)
+  Optimized: 100.0% (200/200)
+  ✅ Improvement: 19.5%
+
+PATH LENGTHS (successful queries only):
+  Initial:   496.0 (161/200 queries)
+  Optimized: 269.75 (200/200 queries)
+  ✅ Improvement: 45.6%
+
+COMBINED SCORE (success rate × path efficiency):
+  Score: 204.34
+
+length 6
+SUCCESS RATE:
+  Initial:   79.5% (159/200)
+  Optimized: 100.0% (200/200)
+  ✅ Improvement: 20.5%
+
+PATH LENGTHS (successful queries only):
+  Initial:   555.5 (159/200 queries)
+  Optimized: 195.25 (200/200 queries)
+  ✅ Improvement: 64.9%
+
+COMBINED SCORE (success rate × path efficiency):
+  Score: 234.68
+
+length 7
+
+SUCCESS RATE:
+  Initial:   80.5% (161/200)
+  Optimized: 100.0% (200/200)
+  ✅ Improvement: 19.5%
+
+PATH LENGTHS (successful queries only):
+  Initial:   551.5 (161/200 queries)
+  Optimized: 170.75 (200/200 queries)
+  ✅ Improvement: 69.0%
+
+COMBINED SCORE (success rate × path efficiency):
+  Score: 244.22
+
+length 8
+
+SUCCESS RATE:
+  Initial:   80.0% (160/200)
+  Optimized: 100.0% (200/200)
+  ✅ Improvement: 20.0%
+
+PATH LENGTHS (successful queries only):
+  Initial:   587.75 (160/200 queries)
+  Optimized: 17.75 (200/200 queries)
+  ✅ Improvement: 97.0%
+
+COMBINED SCORE (success rate × path efficiency):
+  Score: 452.97
+
+length 9
+SUCCESS RATE:
+  Initial:   79.5% (159/200)
+  Optimized: 100.0% (200/200)
+  ✅ Improvement: 20.5%
+
+PATH LENGTHS (successful queries only):
+  Initial:   545.5 (159/200 queries)
+  Optimized: 21.5 (200/200 queries)
+  ✅ Improvement: 96.1%
+
+COMBINED SCORE (success rate × path efficiency):
+  Score: 427.23
+
+length 10
+SUCCESS RATE:
+  Initial:   79.0% (158/200)
+  Optimized: 100.0% (200/200)
+  ✅ Improvement: 21.0%
+
+PATH LENGTHS (successful queries only):
+  Initial:   655.75 (158/200 queries)
+  Optimized: 17.75 (200/200 queries)
+  ✅ Improvement: 97.3%
+
+COMBINED SCORE (success rate × path efficiency):
+  Score: 463.61
+
+length 11
+
+SUCCESS RATE:
+  Initial:   79.0% (158/200)
+  Optimized: 100.0% (200/200)
+  ✅ Improvement: 21.0%
+
+PATH LENGTHS (successful queries only):
+  Initial:   584.0 (158/200 queries)
+  Optimized: 19.75 (200/200 queries)
+  ✅ Improvement: 96.6%
+
+COMBINED SCORE (success rate × path efficiency):
+  Score: 442.00
+
+
+length 12
+
+SUCCESS RATE:
+  Initial:   79.5% (159/200)
+  Optimized: 100.0% (200/200)
+  ✅ Improvement: 20.5%
+
+PATH LENGTHS (successful queries only):
+  Initial:   595.5 (159/200 queries)
+  Optimized: 18.5 (200/200 queries)
+  ✅ Improvement: 96.9%
+
+COMBINED SCORE (success rate × path efficiency):
+  Score: 450.22
 
 6 Lines
 
 ### Implementation Details
 
-[Describe the key aspects of your implementation]
+My final implementation is a graph where 0 points to 1,2, and 3. 1 points to 4, 5, and 6. After this, each number starting from 4 points to the number that is 5 after it, so each number with the same value mode 5 are in a line. The intended solution should have be each number starting from 2. However, starting from 4 gave better results. After the nodes reach 20 to 24, they go back nodes 1, 2, 3, but generally one that did not contain the line graph containing that number so the random walk could visit other numbers. The only exception is 21 going back to 1 since both 2 and 3 were taken. All of the other numbers point to 0. This is using the fact that the exponential distribution rarely gives large numbers.
 
 ### Results
 
-[Share the performance metrics of your solution]
+5 lines and length 5
+SUCCESS RATE:
+  Initial:   80.5% (161/200)
+  Optimized: 100.0% (200/200)
+  ✅ Improvement: 19.5%
+
+PATH LENGTHS (successful queries only):
+  Initial:   649.0 (161/200 queries)
+  Optimized: 15.5 (200/200 queries)
+  ✅ Improvement: 97.6%
+
+COMBINED SCORE (success rate × path efficiency):
+  Score: 475.82
+
+This is the best result I have seen. The results to sometimes vary.
 
 ### Trade-offs & Limitations
 
-[Discuss any trade-offs or limitations of your approach]
+The main limitation of this approach is that this approach is unlikely to hit numbers greater than 26 unless the random walk starts there. However, it is likely going to hit numbers 0 to 25 well. Since there still is 5 to 13.5% chance of getting 26 or more, it may be worth considering making the graphs cover more numbers. However, this will slow down in the likely case that the query is for a smaller node. The two possible problems is if the line with the number we are looking for is missed or the random walk start in a line without the number or after it. Using 3 lines will make the first problem of missing the line less likely, but it will make the second problem worse.
 
 ### Iteration Journey
 
-[Briefly describe your iteration process - what approaches you tried, what you learned, and how your solution evolved]
+I first thought of making the graph 1 line which will mean all of the numbers will be hit and the nodes in order. However, this would not use the fact that there are many random walks. Also, the start of the random walk can not be chosen. However, this idea provided some sort of way to help make sure all nodes were visited. I then decided to include many lines to use the fact that there are many random walks meaning several paths could be explored at once. I then tested different lengths of lines and a few different number of lines. If I have more time, in addition to doing more testing with different number of lines, I could have considered a tree structure. It might be able to use the fact that there are many random walks more effectively. However, it might have more variance in the time taken. Random walks will likely miss the path with the query, but it would take less time to go to the root.
 
 ### Credits
-Cursor was used for coding
+Cursor was used for some parts of coding and sorting out github issues
 Desmos was used for some calculations
 Gemini was used to get equation for h(n)
 

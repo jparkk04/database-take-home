@@ -93,6 +93,8 @@ def create_five_line_graph(length):
 
 def create_three_line_graph(length):
     optimized_graph = {}
+    for i in range(500):
+        optimized_graph[str(i)] = {}
     optimized_graph["0"]["1"] = 1
     optimized_graph["0"]["2"] = 1
     optimized_graph["0"]["3"] = 1
@@ -156,8 +158,8 @@ def optimize_graph(
     # sophisticated strategy based on query analysis!
     # ---------------------------------------------------------------
     length = 5
+    #optimized_graph = create_five_line_graph(length)
     optimized_graph = create_five_line_graph(length)
-    optimized_graph = create_three_line_graph(length)
     print(f"Created graph with {length} lines")
     
 
