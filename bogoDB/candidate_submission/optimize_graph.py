@@ -70,6 +70,25 @@ def verify_constraints(graph, max_edges_per_node, max_total_edges):
 
     return True
 
+def create_five_line_graph(length):
+    optimized_graph = {}
+    for i in range(500):
+        optimized_graph[str(i)] = {}
+    for i in range(1 or (500 // (length * 5)) - 1):
+        optimized_graph[str(i * length * 5 + 0)][str(i * length * 5 + 1)] = 3
+        optimized_graph[str(i * length * 5 + 0)][str(i * length * 5 + 2)] = 1
+        optimized_graph[str(i * length  * 5 + 0)][str(i * length  * 5 + 3)] = 1
+        optimized_graph[str(i * length  * 5 + 1)][str(i * length  * 5 + 4)] = 1
+        optimized_graph[str(i * length  * 5 + 1)][str(i * length  * 5 + 5)] = 1
+        optimized_graph[str(i * length * 5 + 1)][str(i * length * 5 + 6)] = 1
+        for j in range(7, length * 5):
+            optimized_graph[str(i * length * 5 + j)][str(i * length * 5 + j + 5)] = 1
+        optimized_graph[str(i * length * 5 + 37)][str(i * length * 5 + 1)] = 1 # 1 goes to lines 0,1,4 mod 5
+        optimized_graph[str(i * length * 5 + 38)][str(i * length * 5 + 1)] = 1
+        optimized_graph[str(i * length * 5 + 39)][str(i * length * 5 + 3)] = 1
+        optimized_graph[str(i * length * 5 + 35)][str(i * length * 5 + 2)] = 1
+        optimized_graph[str(i * length * 5 + 36)][str(i * length * 5 + 1)] = 1
+    return optimized_graph
 
 def optimize_graph(
     initial_graph,
@@ -92,11 +111,6 @@ def optimize_graph(
         Optimized graph
     """
     print("Starting graph optimization...")
-
-    # Create a copy of the initial graph to modify
-    optimized_graph = {}
-    for node, edges in initial_graph.items():
-        optimized_graph[node] = dict(edges)
 
     # =============================================================
     # TODO: Implement your optimization strategy here
@@ -126,6 +140,11 @@ def optimize_graph(
     # This is just a basic example - you should implement a more
     # sophisticated strategy based on query analysis!
     # ---------------------------------------------------------------
+    length = 7
+    optimized_graph = create_five_line_graph(length)
+    print(f"Created graph with {length} lines")
+    
+
 
     # Count total edges in the initial graph
     total_edges = sum(len(edges) for edges in optimized_graph.values())
@@ -193,3 +212,5 @@ if __name__ == "__main__":
     save_graph(optimized_graph, output_file)
 
     print("Done! Optimized graph has been saved.")
+
+
